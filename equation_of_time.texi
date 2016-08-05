@@ -1,0 +1,173 @@
+\input texinfo
+@c equation_of_time.mc Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
+@c
+@c   This program is free software: you can redistribute it and/or modify
+@c   it under the terms of the GNU General Public License as published by
+@c   the Free Software Foundation, either version 3 of the License, or
+@c   (at your option) any later version.
+@c
+@c   This program is distributed in the hope that it will be useful,
+@c   but WITHOUT ANY WARRANTY; without even the implied warranty of
+@c   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+@c   GNU General Public License for more details.
+@c
+@c   You should have received a copy of the GNU General Public License
+@c   along with this program.  If not, see <http://www.gnu.org/licenses/>
+@c
+@c   Low precision ephemeris for the Sun.
+@c   Source: Explanatory Supplement to the Astronomical Almanac
+@c   P. Kenneth Seidelmann, United States Naval Observatory.
+@c   Nautical Almanac Office, Great Britain. Nautical Almanac Office
+@c
+
+@setfilename equation_of_time.info
+@settitle equation_of_time
+
+@ifinfo 
+@macro var {expr}
+<\expr\>
+@end macro
+@end ifinfo
+
+@node Top, Introduction to equation_of_time, (dir), (dir)
+@top
+@menu
+* Introduction to equation_of_time::
+* Definitions for equation_of_time::
+* Function and variable index::
+@end menu
+@chapter equation_of_time
+
+@node Introduction to equation_of_time, Definitions for equation_of_time, Top, Top
+@section Introduction to equation_of_time
+
+@code{equation_of_time} returns the difference between the standard mean day and the actual. 
+This is the difference in minutes between the Sun's standard meridian and the actual
+transit. For example, a standard clock will indicate the passage from AM to PM at noon, while the
+actual maybe at 12:45 pm. This difference, 45 minutes, is the equation of time. There are two main
+causes -- first is that the Earth's orbital speed varies throughout the year, and second that the
+Earth rotational axis is inclined to the orbital plane. The equation of time can also be used to
+display the observed position of the Sun in the sky during the day with respect to seasonal variation.
+
+@node Definitions for equation_of_time, Function and variable index, Introduction to equation_of_time, Top
+@section Definitions for equation_of_time
+@deffn {Function} equation_of_time_full(@var{T}, @var{UT})
+Returns declination @var{dec}, equation of time @var{E} and ecliptic longitude @var{lambda}.
+@end deffn
+@deffn {Function} equation_of_time(@var{T}, @var{UT})
+Returns declination @var{dec} and equation of time @var{E}.
+@end deffn
+@deffn {Function} analemma(@var{day},@var{month},@var{year},@var{tzi},@var{ds})
+Returns declination @var{dec} and equation of time @var{E}.
+@end deffn
+@deffn {Function} greenwich_hour_angle(@var{UT}, @var{E})
+Returns the Greenwich hour angle (degrees).
+@end deffn
+@deffn {Function} sun_hour_angle(@var{phi}, @var{h}, @var{dec})
+Returns the sun hour angle (degrees).
+@end deffn
+@deffn {Function} calculate_rise_time(@var{T}, @var{lat}, @var{lon}, @var{sgn}, @var{h})
+Returns sunrise (if @var{sgn} = +1) or sunset (if @var{sgn} = -1) universal times in hours.
+@end deffn
+@deffn {Function} julian_dow(@var{dow},@var{week},@var{month},@var{year})
+Returns the Julian day of nth @var{dow}. For example, for year 2016, 1st Sunday in November julian_dow(1,1,11,2016)
+and 2nd Sunday of March julian_dow(1,2,3,2016).
+@end deffn
+@deffn {Function} day_of_year(@var{day},@var{month},@var{year})
+Returns the day number of the year. 
+@end deffn
+@deffn {Function} DST(@var{jd},@var{ds})
+Returns standard Daylight savings correction.
+@end deffn
+@deffn {Function} UT_to_local_time(@var{UT},@var{jd},@var{tz},@var{ds})
+Returns local time given universal time.
+@end deffn
+@deffn {Function} local_to_UT_time(@var{LT},@var{jd},@var{tz},@var{ds})
+Returns universal time given local time.
+@end deffn
+@deffn {Function} day_duration(@var{T}, @var{jd}, @var{lat}, @var{lon}, @var{h})
+Returns the length of the day, from sunrise to sunset.
+@end deffn
+@deffn {Function} observer_coord(@var{hour_angle}, @var{dec}, @var{lat})
+Returns the observed azimuth and altitude given @var{hour_angle}, @var{dec} at observer latitude @var{lat}
+@end deffn
+@deffn {Function} observer_coord_gha(@var{gha}, @var{dec}, @var{lat}, @var{lon})
+Returns the observed azimuth and altitude given @var{gha}, @var{dec} at observer latitude @var{lat} longitude @var{lon}
+@end deffn
+@deffn {Function} sun_alt_az(@var{jd},@var{tz},@var{ds},@var{lat}, @var{lon}, @var{h})
+Returns lists of azimuth and altitude, and labels.
+@end deffn
+
+@defvr{Variable} day
+Day of month. 
+@end defvr 
+@defvr{Variable} dec
+declination in degrees.
+@end defvr 
+@defvr{Variable} dow
+Day of week.
+@end defvr 
+@defvr{Variable} ds
+Daylight savings offset in hour. 
+@end defvr 
+@defvr{Variable} E
+Equation of time in minutes.
+@end defvr 
+@defvr{Variable} gha
+Greenwich hour angle in degrees.
+@end defvr 
+@defvr{Variable} h
+Observer altitude above ground level in meters.
+@end defvr 
+@defvr{Variable} hour_angle
+Hour angle in degrees.
+@end defvr 
+@defvr{Variable} jd
+Julian day number.
+@end defvr 
+@defvr{Variable} lambda
+Ecliptic longitude in degrees.
+@end defvr 
+@defvr{Variable} lat
+Observer latitude in degrees.
+@end defvr 
+@defvr{Variable} lon
+Observer longitude in degrees.
+@end defvr 
+@defvr{Variable} LT
+Local time, e.g. time in Observer frame.
+@end defvr 
+@defvr{Variable} month
+Month of year.
+@end defvr 
+@defvr{Variable} phi
+Observer latitude in degrees.
+@end defvr 
+@defvr{Variable} sgn
+Setting. +1 for rise. -1 for set.
+@end defvr 
+@defvr{Variable} T
+Julian days in centuries from J2000.
+@end defvr 
+@defvr{Variable} tz
+Timezone offset in hours.
+@end defvr 
+@defvr{Variable} tzi
+Timeone offset in hours
+@end defvr 
+@defvr{Variable} UT
+Universal time in hours.
+@end defvr 
+@defvr{Variable} week
+Week of month.
+@end defvr 
+@defvr{Variable} year
+Conventional year number.
+@end defvr 
+
+@node Function and variable index, , Definitions for equation_of_time, Top
+@appendix Function and variable index
+@printindex fn
+@printindex vr
+
+@bye

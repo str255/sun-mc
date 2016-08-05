@@ -1,0 +1,122 @@
+\input texinfo
+@c julian.mc Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
+@c
+@c   This program is free software: you can redistribute it and/or modify
+@c   it under the terms of the GNU General Public License as published by
+@c   the Free Software Foundation, either version 3 of the License, or
+@c   (at your option) any later version.
+@c
+@c   This program is distributed in the hope that it will be useful,
+@c   but WITHOUT ANY WARRANTY; without even the implied warranty of
+@c   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+@c   GNU General Public License for more details.
+@c
+@c   You should have received a copy of the GNU General Public License
+@c   along with this program.  If not, see <http://www.gnu.org/licenses/>
+@c
+@c   Low precision ephemeris for the Sun.
+@c   Source: Explanatory Supplement to the Astronomical Almanac
+@c   P. Kenneth Seidelmann, United States Naval Observatory.
+@c   Nautical Almanac Office, Great Britain. Nautical Almanac Office
+@c
+
+@setfilename julian.info
+@settitle julian
+
+@ifinfo 
+@macro var {expr}
+<\expr\>
+@end macro
+@end ifinfo
+
+@node Top, Introduction to julian, (dir), (dir)
+@top
+@menu
+* Introduction to julian::
+* Definitions for julian::
+* Function and variable index::
+@end menu
+@chapter julian
+
+@node Introduction to julian, Definitions for julian, Top, Top
+@section Introduction to julian
+
+@code{julian} returns the number of elapsed days since January 1, 4713 BC. Note that
+the conventional calendar changed in October 1582 due to the adoption of the Gregorian calendar. 
+The algorithm is based on Peter Duffett-Smith ``Astronomy with your personal computer'', 
+2nd edition. In this algorithm, there is no year 0 B.C. The Macsyma tests is from Jean Meeus 
+``Astronomical Algorithms'', which uses a year 0 B.C. convention. Users should be careful
+when using years <=0.
+
+@node Definitions for julian, Function and variable index, Introduction to julian, Top
+@section Definitions for julian
+
+@deffn {Function} julian(@var{day}, @var{month}, @var{year})
+Returns the Julian day number.
+@end deffn
+@deffn {Function} modified_julian(@var{day}, @var{month}, @var{year})
+Returns a modified Julian day number that is offset by 2.4 million days.
+@end deffn
+@deffn {Function} julian1900(@var{day}, @var{month}, @var{year})
+Returns the number of Julian days since 1900 A.D.
+@end deffn
+@deffn {Function} julian1904(@var{day}, @var{month}, @var{year})
+Returns the number of Julian days since 1904 A.D.
+@end deffn
+@deffn {Function} iso8601(@var{day}, @var{month}, @var{year})
+The iso8601 standard and the proleptic Gregorian calendar,
+extends the Gregorian calendar backward from 1582. Julian days start at noon in Greenwich on November 24, 4714 B.C.
+@end deffn
+@deffn {Function} calendar(@var{julianDay})
+Returns the [day, month, year] given a Julian day number.
+@end deffn
+@deffn {Function} calendar8601(@var{julianDay})
+Returns the [day, month, year] given a iso8601 day number.
+@end deffn
+@deffn {Function} emacs_absolute_day(@var{day}, @var{month}, @var{year})
+Returns an emacs day number given day, month, year.
+@end deffn
+@deffn {Function} centuries_j2000(@var{jd})
+Returns the number of centuries since 1 January 2000.
+@end deffn
+@deffn {Function} sind(@var{x})
+Returns sin of the argument given in degrees.
+@end deffn
+@deffn {Function} cosd(@var{x})
+Returns cos of the argument given in degrees.
+@end deffn
+
+@defvr{Variable} day
+The day of the month.
+@end defvr 
+@defvr{Variable} dec
+Declination in degrees.
+@end defvr 
+@defvr{Variable} E
+Equation of time in minutes.
+@end defvr 
+@defvr{Variable} jd
+Julian day number.
+@end defvr 
+@defvr{Variable} julianDay
+Julian day number.
+@end defvr 
+@defvr{Variable} month
+month of year.
+@end defvr 
+@defvr{Variable} T
+(Fractional) number of centuries since 1 January 2000.
+@end defvr 
+@defvr{Variable} UT
+Universal time in hours.
+@end defvr 
+@defvr{Variable} year
+Year number.
+@end defvr 
+
+@node Function and variable index, , Definitions for julian, Top
+@appendix Function and variable index
+@printindex fn
+@printindex vr
+
+@bye

@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on August 4, 2016 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>equation_of_time</title>
+
+<meta name="description" content="equation_of_time">
+<meta name="keywords" content="equation_of_time">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Top"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="SEC_Top"></a>
+<h1 class="settitle">equation_of_time</h1>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Introduction-to-equation_005fof_005ftime">1.1 Introduction to equation_of_time</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Function-and-variable-index">A. Function and variable index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+<hr size="1">
+<a name="equation_005fof_005ftime"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction-to-equation_005fof_005ftime" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="chapter">1. equation_of_time</h1>
+
+<hr size="6">
+<a name="Introduction-to-equation_005fof_005ftime"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#equation_005fof_005ftime" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Definitions-for-equation_005fof_005ftime" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#equation_005fof_005ftime" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#equation_005fof_005ftime" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-to-equation_005fof_005ftime-1"></a>
+<h2 class="section">1.1 Introduction to equation_of_time</h2>
+
+<p><code>equation_of_time</code> returns the difference between the standard mean day and the actual. 
+This is the difference in minutes between the Sun&rsquo;s standard meridian and the actual
+transit. For example, a standard clock will indicate the passage from AM to PM at noon, while the
+actual maybe at 12:45 pm. This difference, 45 minutes, is the equation of time. There are two main
+causes &ndash; first is that the Earth&rsquo;s orbital speed varies throughout the year, and second that the
+Earth rotational axis is inclined to the orbital plane. The equation of time can also be used to
+display the observed position of the Sun in the sky during the day with respect to seasonal variation.
+</p>
+<hr size="6">
+<a name="Definitions-for-equation_005fof_005ftime"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction-to-equation_005fof_005ftime" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#equation_005fof_005ftime" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#equation_005fof_005ftime" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Definitions-for-equation_005fof_005ftime-1"></a>
+<h2 class="section">1.2 Definitions for equation_of_time</h2>
+<dl>
+<dt><a name="index-equation_005fof_005ftime_005ffull"></a><u>Function:</u> <b>equation_of_time_full</b><i>(<var>T</var>, <var>UT</var>)</i></dt>
+<dd><p>Returns declination <var>dec</var>, equation of time <var>E</var> and ecliptic longitude <var>lambda</var>.
+</p></dd></dl>
+<dl>
+<dt><a name="index-equation_005fof_005ftime"></a><u>Function:</u> <b>equation_of_time</b><i>(<var>T</var>, <var>UT</var>)</i></dt>
+<dd><p>Returns declination <var>dec</var> and equation of time <var>E</var>.
+</p></dd></dl>
+<dl>
+<dt><a name="index-analemma"></a><u>Function:</u> <b>analemma</b><i>(<var>day</var>,<var>month</var>,<var>year</var>,<var>tzi</var>,<var>ds</var>)</i></dt>
+<dd><p>Returns declination <var>dec</var> and equation of time <var>E</var>.
+</p></dd></dl>
+<dl>
+<dt><a name="index-greenwich_005fhour_005fangle"></a><u>Function:</u> <b>greenwich_hour_angle</b><i>(<var>UT</var>, <var>E</var>)</i></dt>
+<dd><p>Returns the Greenwich hour angle (degrees).
+</p></dd></dl>
+<dl>
+<dt><a name="index-sun_005fhour_005fangle"></a><u>Function:</u> <b>sun_hour_angle</b><i>(<var>phi</var>, <var>h</var>, <var>dec</var>)</i></dt>
+<dd><p>Returns the sun hour angle (degrees).
+</p></dd></dl>
+<dl>
+<dt><a name="index-calculate_005frise_005ftime"></a><u>Function:</u> <b>calculate_rise_time</b><i>(<var>T</var>, <var>lat</var>, <var>lon</var>, <var>sgn</var>, <var>h</var>)</i></dt>
+<dd><p>Returns sunrise (if <var>sgn</var> = +1) or sunset (if <var>sgn</var> = -1) universal times in hours.
+</p></dd></dl>
+<dl>
+<dt><a name="index-julian_005fdow"></a><u>Function:</u> <b>julian_dow</b><i>(<var>dow</var>,<var>week</var>,<var>month</var>,<var>year</var>)</i></dt>
+<dd><p>Returns the Julian day of nth <var>dow</var>. For example, for year 2016, 1st Sunday in November julian_dow(1,1,11,2016)
+and 2nd Sunday of March julian_dow(1,2,3,2016).
+</p></dd></dl>
+<dl>
+<dt><a name="index-day_005fof_005fyear"></a><u>Function:</u> <b>day_of_year</b><i>(<var>day</var>,<var>month</var>,<var>year</var>)</i></dt>
+<dd><p>Returns the day number of the year. 
+</p></dd></dl>
+<dl>
+<dt><a name="index-DST"></a><u>Function:</u> <b>DST</b><i>(<var>jd</var>,<var>ds</var>)</i></dt>
+<dd><p>Returns standard Daylight savings correction.
+</p></dd></dl>
+<dl>
+<dt><a name="index-UT_005fto_005flocal_005ftime"></a><u>Function:</u> <b>UT_to_local_time</b><i>(<var>UT</var>,<var>jd</var>,<var>tz</var>,<var>ds</var>)</i></dt>
+<dd><p>Returns local time given universal time.
+</p></dd></dl>
+<dl>
+<dt><a name="index-local_005fto_005fUT_005ftime"></a><u>Function:</u> <b>local_to_UT_time</b><i>(<var>LT</var>,<var>jd</var>,<var>tz</var>,<var>ds</var>)</i></dt>
+<dd><p>Returns universal time given local time.
+</p></dd></dl>
+<dl>
+<dt><a name="index-day_005fduration"></a><u>Function:</u> <b>day_duration</b><i>(<var>T</var>, <var>jd</var>, <var>lat</var>, <var>lon</var>, <var>h</var>)</i></dt>
+<dd><p>Returns the length of the day, from sunrise to sunset.
+</p></dd></dl>
+<dl>
+<dt><a name="index-observer_005fcoord"></a><u>Function:</u> <b>observer_coord</b><i>(<var>hour_angle</var>, <var>dec</var>, <var>lat</var>)</i></dt>
+<dd><p>Returns the observed azimuth and altitude given <var>hour_angle</var>, <var>dec</var> at observer latitude <var>lat</var>
+</p></dd></dl>
+<dl>
+<dt><a name="index-observer_005fcoord_005fgha"></a><u>Function:</u> <b>observer_coord_gha</b><i>(<var>gha</var>, <var>dec</var>, <var>lat</var>, <var>lon</var>)</i></dt>
+<dd><p>Returns the observed azimuth and altitude given <var>gha</var>, <var>dec</var> at observer latitude <var>lat</var> longitude <var>lon</var>
+</p></dd></dl>
+<dl>
+<dt><a name="index-sun_005falt_005faz"></a><u>Function:</u> <b>sun_alt_az</b><i>(<var>jd</var>,<var>tz</var>,<var>ds</var>,<var>lat</var>, <var>lon</var>, <var>h</var>)</i></dt>
+<dd><p>Returns lists of azimuth and altitude, and labels.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-day"></a><u>Variable:</u> <b>day</b></dt>
+<dd><p>Day of month. 
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-dec"></a><u>Variable:</u> <b>dec</b></dt>
+<dd><p>declination in degrees.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-dow"></a><u>Variable:</u> <b>dow</b></dt>
+<dd><p>Day of week.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ds"></a><u>Variable:</u> <b>ds</b></dt>
+<dd><p>Daylight savings offset in hour. 
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-E"></a><u>Variable:</u> <b>E</b></dt>
+<dd><p>Equation of time in minutes.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gha"></a><u>Variable:</u> <b>gha</b></dt>
+<dd><p>Greenwich hour angle in degrees.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-h"></a><u>Variable:</u> <b>h</b></dt>
+<dd><p>Observer altitude above ground level in meters.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-hour_005fangle"></a><u>Variable:</u> <b>hour_angle</b></dt>
+<dd><p>Hour angle in degrees.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-jd"></a><u>Variable:</u> <b>jd</b></dt>
+<dd><p>Julian day number.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-lambda"></a><u>Variable:</u> <b>lambda</b></dt>
+<dd><p>Ecliptic longitude in degrees.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-lat"></a><u>Variable:</u> <b>lat</b></dt>
+<dd><p>Observer latitude in degrees.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-lon"></a><u>Variable:</u> <b>lon</b></dt>
+<dd><p>Observer longitude in degrees.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-LT"></a><u>Variable:</u> <b>LT</b></dt>
+<dd><p>Local time, e.g. time in Observer frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-month"></a><u>Variable:</u> <b>month</b></dt>
+<dd><p>Month of year.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-phi"></a><u>Variable:</u> <b>phi</b></dt>
+<dd><p>Observer latitude in degrees.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sgn"></a><u>Variable:</u> <b>sgn</b></dt>
+<dd><p>Setting. +1 for rise. -1 for set.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-T"></a><u>Variable:</u> <b>T</b></dt>
+<dd><p>Julian days in centuries from J2000.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-tz"></a><u>Variable:</u> <b>tz</b></dt>
+<dd><p>Timezone offset in hours.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-tzi"></a><u>Variable:</u> <b>tzi</b></dt>
+<dd><p>Timeone offset in hours
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-UT"></a><u>Variable:</u> <b>UT</b></dt>
+<dd><p>Universal time in hours.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-week"></a><u>Variable:</u> <b>week</b></dt>
+<dd><p>Week of month.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-year"></a><u>Variable:</u> <b>year</b></dt>
+<dd><p>Conventional year number.
+</p></dd></dl>
+
+
+<hr size="6">
+<a name="Function-and-variable-index"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Definitions-for-equation_005fof_005ftime" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[ &gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#equation_005fof_005ftime" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Function-and-variable-index-1"></a>
+<h1 class="appendix">A. Function and variable index</h1>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Function-and-variable-index-1_fn_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-fn">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-A">A</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-analemma"><code>analemma</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-C">C</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-calculate_005frise_005ftime"><code>calculate_rise_time</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-D">D</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-day_005fduration"><code>day_duration</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-day_005fof_005fyear"><code>day_of_year</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-DST"><code>DST</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-E">E</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-equation_005fof_005ftime"><code>equation_of_time</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-equation_005fof_005ftime_005ffull"><code>equation_of_time_full</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-G">G</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-greenwich_005fhour_005fangle"><code>greenwich_hour_angle</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-J">J</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-julian_005fdow"><code>julian_dow</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-L">L</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-local_005fto_005fUT_005ftime"><code>local_to_UT_time</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-O">O</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-observer_005fcoord"><code>observer_coord</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-observer_005fcoord_005fgha"><code>observer_coord_gha</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-S">S</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sun_005falt_005faz"><code>sun_alt_az</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sun_005fhour_005fangle"><code>sun_hour_angle</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_fn_letter-U">U</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-UT_005fto_005flocal_005ftime"><code>UT_to_local_time</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Function-and-variable-index-1_fn_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_fn_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+</td></tr></table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Function-and-variable-index-1_vr_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-vr">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-D">D</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-day"><code>day</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dec"><code>dec</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dow"><code>dow</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ds"><code>ds</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-E">E</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-E"><code>E</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-G">G</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gha"><code>gha</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-H">H</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-h"><code>h</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-hour_005fangle"><code>hour_angle</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-J">J</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-jd"><code>jd</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-L">L</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-lambda"><code>lambda</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-lat"><code>lat</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-lon"><code>lon</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-LT"><code>LT</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-M">M</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-month"><code>month</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-P">P</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-phi"><code>phi</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-S">S</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sgn"><code>sgn</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-T">T</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-T"><code>T</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-tz"><code>tz</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-tzi"><code>tzi</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-U">U</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-UT"><code>UT</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-W">W</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-week"><code>week</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Function-and-variable-index-1_vr_letter-Y">Y</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-year"><code>year</code></a></td><td valign="top"><a href="#Definitions-for-equation_005fof_005ftime">1.2 Definitions for equation_of_time</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Function-and-variable-index-1_vr_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="#Function-and-variable-index-1_vr_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+
+<hr size="6">
+<a name="SEC_About"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="#Function-and-variable-index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>About This Document</h1>
+<p>
+  This document was generated by <em>Nicholas Strauss</em> on <em>August 4, 2016</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+</p>
+<p>
+  The buttons in the navigation panels have the following meaning:
+</p>
+<table border="1">
+  <tr>
+    <th> Button </th>
+    <th> Name </th>
+    <th> Go to </th>
+    <th> From 1.2.3 go to</th>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt; ] </td>
+    <td align="center">Back</td>
+    <td>Previous section in reading order</td>
+    <td>1.2.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt; ] </td>
+    <td align="center">Forward</td>
+    <td>Next section in reading order</td>
+    <td>1.2.4</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt;&lt; ] </td>
+    <td align="center">FastBack</td>
+    <td>Beginning of this chapter or previous chapter</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td align="center"> [ Up ] </td>
+    <td align="center">Up</td>
+    <td>Up section</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt;&gt; ] </td>
+    <td align="center">FastForward</td>
+    <td>Next chapter</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td align="center"> [Top] </td>
+    <td align="center">Top</td>
+    <td>Cover (top) of document</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Contents] </td>
+    <td align="center">Contents</td>
+    <td>Table of contents</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Index] </td>
+    <td align="center">Index</td>
+    <td>Index</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [ ? ] </td>
+    <td align="center">About</td>
+    <td>About (help)</td>
+    <td> &nbsp; </td>
+  </tr>
+</table>
+
+<p>
+  where the <strong> Example </strong> assumes that the current position is at <strong> Subsubsection One-Two-Three </strong> of a document of the following structure:
+</p>
+
+<ul>
+  <li> 1. Section One
+    <ul>
+      <li>1.1 Subsection One-One
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.2 Subsection One-Two
+        <ul>
+          <li>1.2.1 Subsubsection One-Two-One</li>
+          <li>1.2.2 Subsubsection One-Two-Two</li>
+          <li>1.2.3 Subsubsection One-Two-Three &nbsp; &nbsp;
+            <strong>&lt;== Current Position </strong></li>
+          <li>1.2.4 Subsubsection One-Two-Four</li>
+        </ul>
+      </li>
+      <li>1.3 Subsection One-Three
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.4 Subsection One-Four</li>
+    </ul>
+  </li>
+</ul>
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated by <em>Nicholas Strauss</em> on <em>August 4, 2016</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

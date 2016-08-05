@@ -1,0 +1,45 @@
+(?fmakunbound(f),kill(functions,values,arrays));
+done;
+(batch("julian.mc"),0);
+0$
+/* astronomical algorithms 2nd edition, jean meeus, willmann-bell, page 62. */
+julian(1.5,1,2000);
+2451545.0$
+julian(1.0,1,1999);
+2451179.5$
+julian(27,1,1987);
+2446822.5$
+julian(19.5,6,1987);
+2446966.0$
+julian(27,1,1988);
+2447187.5$
+julian(19.5,6,1988);
+2447332.0$
+julian(1,1,1900);
+2415020.5$
+julian(1,1,1600);
+2305447.5$
+julian(31,12,1600);
+2305812.5$
+julian(10.3,4,837);
+2026871.8$
+julian(31,12,-123);
+1676496.5+365$  /* no year 0 convention */
+julian(1,1,-122);
+1676497.5+365$  /* no year 0 convention */
+julian(12.5,7,-1000);
+1356001.0+365$  /* no year 0 convention */
+julian(29,2,-1000);
+1355866.5+366$  /* no year 0 convention */
+julian(17.9,8,-1001);
+1355671.4+366$  /* no year 0 convention */
+julian(1.5,1,-4712);
+0.0+366$  /* no year 0 convention */
+julian(1,1,1)-julian(1,1,0); 
+0.0$/* no year 0 convention*/
+calendar(julian(1,1,2016));
+[Friday, 6, 0.0, 1, January, 1,2016]$
+centuries_j2000(2451545.0);
+0.0$
+centuries_j2000(julian(31.5,12,1899));
+-1.0$
