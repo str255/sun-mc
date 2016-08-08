@@ -58,6 +58,20 @@ analemma(day,month,year,tzi,ds):=equation_of_time(centuries_j2000(julian(day,mon
 /* for day:1 thru 30 do print(day,julian(day,10,1582),calendar(julian(day, 10, 1582)));*/
 /* for jd:0 thru 5 do print(jd,calendar(jd),calendar8601(jd));*/
 
+
+/* New York, NY example 
+*/
+example_title:"New York, NY"; 
+example_day:6;
+example_month:8;
+example_year:2016;
+example_julian_date:julian(6,8,2016); 
+example_timezone:5;
+example_daylight_savings:1;
+example_observer_latitude: 40.708;
+example_observer_longitude: -74.;
+example_observer_altitude:3;
+
 /* Las Vegas NV example 
 */
 example_title:"Las Vegas NV"; 
@@ -78,7 +92,7 @@ analemma_matrix:[];
 label_matrix:[];
 for day:1 thru 365 do analemma_matrix:cons(equation_of_time(centuries_j2000(analemma_start+day), 12-timezone-daylightsavings),analemma_matrix);
 for month:1 thru 12 do label_matrix:cons(append([month_string_array[month]],analemma(1,month,example_year,timezone,daylightsavings)),label_matrix);
-plot2d([discrete,analemma_matrix],[ylabel,"equation of time"],[xlabel,"declination"],cons(label,label_matrix),[title,"Analemma"],[png_file,"analemma"]);
+plot2d([discrete,analemma_matrix],[ylabel,"equation of time"],[xlabel,"declination"],cons(label,label_matrix),[title,"Analemma"],[png_file,"analemma.png"]);
 
 /* value is in degrees
  E is equation of time (see equation_of_time(double T)
@@ -184,7 +198,7 @@ block([jd, T, lon:example_observer_longitude, lat:example_observer_latitude,
 
 /* Plot of Year 2016 Day's duration in Las Vegas, NV
 */
-plot2d([discrete,day_length],[xlabel,"year"],[ylabel,"duration day"],cons(label,label_matrix),[title,example_title],[png_file,"duration_day"]);
+plot2d([discrete,day_length],[xlabel,"year"],[ylabel,"duration day"],cons(label,label_matrix),[title,example_title],[png_file,"duration_day.png"]);
 
 /* 12 months dayup list */
 dayup:[]$
@@ -196,7 +210,7 @@ month_rise:reverse(month_rise);
 day_length:reverse(day_length);
 dayup:reverse(dayup);
 daydown:reverse(daydown);
-plot2d([[discrete,day_length],[discrete,dayup],[discrete,daydown]],[xlabel,"days/year"],[ylabel,"hours/local time"],cons(label,label_matrix),[legend,"duration","sunup","sundown"],[title,example_title],[png_file,"day_duration_up_down"]);
+plot2d([[discrete,day_length],[discrete,dayup],[discrete,daydown]],[xlabel,"days/year"],[ylabel,"hours/local time"],cons(label,label_matrix),[legend,"duration","sunup","sundown"],[title,example_title],[png_file,"day_duration_up_down.png"]);
 
 /* convert observation local hour angle and declination
    to azimuth and altitude.
@@ -259,7 +273,7 @@ sun_alt_az(jd,tz,ds,lat, lon, h):=block([T,LT,UT, UTZ:0, i:0, E, lambda, dec, GH
                    alt_new:observe[2],
                    if (alt_old<0 and alt_new>0) then sun_labels:cons(cons(string(truncate(LT/60*100)/100),observe),sun_labels),
                    if (alt_old>0 and alt_new<0) then sun_labels:cons(cons(string(truncate(LT/60*100)/100),observe),sun_labels),                   
-                   if (mod(LT,60)=0) then  sun_labels:cons(cons(string(LT/60),observe),sun_labels),                   
+                   if (mod(LT,60)=0 and alt_new>0) then  sun_labels:cons(cons(string(LT/60),observe),sun_labels),                   
                    if (alt_new >= 0) then 
                    altaz:cons(cons(LT/60, observe),altaz)),
                  [altaz,sun_labels])$
@@ -295,5 +309,4 @@ plot2d([[discrete,map(lambda([x],[x[2],x[3]]),sun_jan[1])],
        [legend,"jan","jun","sep"],
     [ylabel,"Altitude (deg)"],[xlabel,"Azimuth (deg) degrees clockwise from north."],
     cons(label,append(sun_jan[2],append(sun_jun[2],sun_sep[2]))),
-    [title,"Sun Las Vegas, NV 2016"]);
-/*  [png_file,"sun_position_day"]);*/
+    [title,example_title], [png_file,"sun_position_day.png"]);
