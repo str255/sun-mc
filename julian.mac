@@ -79,7 +79,7 @@ calendar(julianDay):=
 	d : julianDay + 0.5,
 	i : floor(d),
 	fd : d - i,
-	if (fabs(fd-1.0)<1e-10) then 
+	if (abs(fd-1.0)<1e-10) then
 					( 
 					 fd : 0.0,
 					 i : i+1
@@ -111,7 +111,7 @@ calendar8601(julianDay):=
 	d : julianDay + 0.5,
 	i : floor(d),
 	fd : d - i,
-	if (fabs(fd-1.0)<1e-10) then 
+	if (abs(fd-1.0)<1e-10) then
 					( 
 					 fd : 0.0,
 					 i : i+1
