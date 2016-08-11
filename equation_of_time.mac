@@ -1,4 +1,4 @@
-/* equation_of_time.mc Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
+/* equation_of_time.mac Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
    Nautical Almanac Office, Great Britain. Nautical Almanac Office
 */
 
-load("julian.mc");
+load("julian.mac");
 
 /* T is julian day in unit of centuries
    UT is universal time

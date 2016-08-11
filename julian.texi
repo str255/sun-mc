@@ -1,5 +1,5 @@
 \input texinfo
-@c julian.mc Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
+@c julian.mac Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
 @c
 @c   This program is free software: you can redistribute it and/or modify
 @c   it under the terms of the GNU General Public License as published by
