@@ -56,42 +56,6 @@ analemma(day,month,year,tzi,ds):=equation_of_time(centuries_j2000(julian(day,mon
 /* for day:1 thru 30 do print(day,julian(day,10,1582),calendar(julian(day, 10, 1582)));*/
 /* for jd:0 thru 5 do print(jd,calendar(jd),calendar8601(jd));*/
 
-
-/* New York, NY example 
-*/
-example_title:"New York, NY"; 
-example_day:6;
-example_month:8;
-example_year:2016;
-example_julian_date:julian(6,8,2016); 
-example_timezone:5;
-example_daylight_savings:1;
-example_observer_latitude: 40.708;
-example_observer_longitude: -74.;
-example_observer_altitude:3;
-
-/* Las Vegas NV example 
-*/
-example_title:"Las Vegas NV"; 
-example_day:30;
-example_month:7;
-example_year:2016;
-example_julian_date:julian(30,7,2016); 
-example_timezone:8;
-example_daylight_savings:1; 
-example_observer_latitude: 36.048152;
-example_observer_longitude: -114.951; 
-example_observer_altitude:1000;
-
-analemma_start:julian(1,1,example_year);
-timezone:example_timezone;
-daylightsavings:0;
-analemma_matrix:[];
-label_matrix:[];
-for day:1 thru 365 do analemma_matrix:cons(equation_of_time(centuries_j2000(analemma_start+day), 12-timezone-daylightsavings),analemma_matrix);
-for month:1 thru 12 do label_matrix:cons(append([month_string_array[month]],analemma(1,month,example_year,timezone,daylightsavings)),label_matrix);
-plot2d([discrete,analemma_matrix],[ylabel,"equation of time"],[xlabel,"declination"],cons(label,label_matrix),[title,"Analemma"],[png_file,"analemma.png"]);
-
 /* value is in degrees
  E is equation of time (see equation_of_time(double T)
  UT is universal time
@@ -140,7 +104,6 @@ calculate_rise_time(T, lat, lon, sgn, h):=block([UT:12+8, UTZ:0, i:0, E, lambda,
 		   if (UT<0) then UT:UT + 24 else (if (UT > 24) then UT:UT - 24)),
 		   UT)$
 
-
 /* dow is day of week
    returns julian day of nth dow.
    For example 1st Sunday in November julian_dow(1,1,11,2016)
@@ -165,50 +128,10 @@ DST(jd,ds):=block([dst_beg:julian_dow(1,2,3,example_year),dst_end:julian_dow(1,1
 UT_to_local_time(UT,jd,tz,ds):=block([],ds:DST(jd,ds),mod(UT-tz+ds,24))$
 local_to_UT_time(LT,jd,tz,ds):=block([],ds:DST(jd,ds),mod(LT+tz-ds,24))$
 
-
-T:centuries_j2000(example_julian_date);
-rise:calculate_rise_time(T, example_observer_latitude,example_observer_longitude, 1, example_observer_altitude);
-rise_local:UT_to_local_time(rise,example_julian_date,example_timezone, example_daylight_savings);
-set:calculate_rise_time(T, example_observer_latitude, example_observer_longitude, -1, example_observer_altitude);
-set_local:UT_to_local_time(set,example_julian_date,example_timezone, example_daylight_savings);
 day_duration(T, jd, lat, lon, h):=block([delta,rise,set],
 rise:UT_to_local_time(calculate_rise_time(T, lat, lon, 1, h),jd,example_timezone, example_daylight_savings),
 set:UT_to_local_time(calculate_rise_time(T, lat, lon, -1, h),jd,example_timezone, example_daylight_savings),
 [rise,set])$
-/* one years duration list 2016 Las Vegas, NV */
-day_length:[]$
-for i:0 thru 365 do block([aday:day_duration(centuries_j2000(analemma_start+i), analemma_start+i, example_observer_latitude, example_observer_longitude, 0)], day_length:cons(aday[2]-aday[1],day_length));
-/* 12 months duration list */
-
-month_rise:[];
-month_set:[];
-label_matrix:[];
-block([jd, T, lon:example_observer_longitude, lat:example_observer_latitude,
-       h:example_observer_altitude, tz:example_timezone, ds:example_daylight_savings],
-            for month:1 thru 12 do (
-              jd:julian(1,month,example_year),
-              T:centuries_j2000(jd),
-              month_rise:cons(UT_to_local_time(calculate_rise_time(T, lat, lon, 1, h), jd, tz, ds), month_rise),
-              month_set:cons(UT_to_local_time(calculate_rise_time(T, lat, lon, -1, h), jd, tz, ds), month_set)),
-            for month:1 thru 12 do label_matrix:cons([month_string_array[month], julian(1,month,example_year)-julian(1,1,example_year),
-              month_set[month]-month_rise[month]],
-              label_matrix));
-
-/* Plot of Year 2016 Day's duration in Las Vegas, NV
-*/
-plot2d([discrete,day_length],[xlabel,"year"],[ylabel,"duration day"],cons(label,label_matrix),[title,example_title],[png_file,"duration_day.png"]);
-
-/* 12 months dayup list */
-dayup:[]$
-for i:0 thru 365 do block([aday:day_duration(centuries_j2000(analemma_start+i), analemma_start+i, example_observer_latitude, example_observer_longitude, 0)], dayup:cons(aday[1],dayup));
-/* 12 months daydown list */
-daydown:[]$
-for i:0 thru 365 do block([aday:day_duration(centuries_j2000(analemma_start+i), analemma_start+i, example_observer_latitude, example_observer_longitude, 0)], daydown:cons(aday[2],daydown));
-month_rise:reverse(month_rise);
-day_length:reverse(day_length);
-dayup:reverse(dayup);
-daydown:reverse(daydown);
-plot2d([[discrete,day_length],[discrete,dayup],[discrete,daydown]],[xlabel,"days/year"],[ylabel,"hours/local time"],cons(label,label_matrix),[legend,"duration","sunup","sundown"],[title,example_title],[png_file,"day_duration_up_down.png"]);
 
 /* convert observation local hour angle and declination
    to azimuth and altitude.
@@ -275,36 +198,3 @@ sun_alt_az(jd,tz,ds,lat, lon, h):=block([T,LT,UT, UTZ:0, i:0, E, lambda, dec, GH
                    if (alt_new >= 0) then 
                    altaz:cons(cons(LT/60, observe),altaz)),
                  [altaz,sun_labels])$
-
-sun_jan:sun_alt_az(
-    julian(1,1,example_year), 
-    example_timezone,
-    example_daylight_savings,
-    example_observer_latitude,
-    example_observer_longitude,
-    example_observer_altitude);
-sun_jun:sun_alt_az(
-    julian(1,6,example_year), 
-    example_timezone,
-    example_daylight_savings,
-    example_observer_latitude,
-    example_observer_longitude,
-    example_observer_altitude);
-sun_sep:sun_alt_az(
-    julian(1,9,example_year), 
-    example_timezone,
-    example_daylight_savings,
-    example_observer_latitude,
-    example_observer_longitude,
-    example_observer_altitude);
-
-/* Sun altitude azimuth example for Las Vegas, Nevada */
-/*for mo:1 thru 12 do (*/
-
-plot2d([[discrete,map(lambda([x],[x[2],x[3]]),sun_jan[1])],
-       [discrete,map(lambda([x],[x[2],x[3]]),sun_jun[1])],
-       [discrete,map(lambda([x],[x[2],x[3]]),sun_sep[1])]],
-       [legend,"jan","jun","sep"],
-    [ylabel,"Altitude (deg)"],[xlabel,"Azimuth (deg) degrees clockwise from north."],
-    cons(label,append(sun_jan[2],append(sun_jun[2],sun_sep[2]))),
-    [title,example_title], [png_file,"sun_position_day.png"]);
