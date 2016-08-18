@@ -1,3 +1,9 @@
+if not member('function, properties (julian))
+  then load ("julian.mac");
+
+if not member('function, properties (equation_of_time))
+  then load ("equation_of_time.mac");
+
 /* New York, NY example 
 */
 example_title:"New York, NY"; 
