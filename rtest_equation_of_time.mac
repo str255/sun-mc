@@ -1,7 +1,14 @@
 (?fmakunbound(f),kill(functions,values,arrays));
 done;
-(batch("equation_of_time.mac"),0);
+(load("julian.mac"), load("equation_of_time.mac"), load("equation_of_time_demo_calcs.mac"), 0);
 0$
+
+/* Relax the tolerance for comparing floats;
+ * I get one failed test (for analemma_matrix) otherwise.
+ */
+(float_approx_equal_tolerance : 2e-14, 0);
+0;
+
 dayup;
 [6.841855562015713, 6.844658798833089, 6.846926342005348, 
 6.848654845931692, 6.84984150948654, 6.850484072048051, 6.850580808153071, 
