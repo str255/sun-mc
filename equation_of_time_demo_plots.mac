@@ -1,0 +1,20 @@
+load ("equation_of_time_demo_calcs.mac");
+
+plot2d([discrete,analemma_matrix],[ylabel,"equation of time"],[xlabel,"declination"],cons(label,label_matrix),[title,"Analemma"],[png_file,"analemma.png"]);
+
+/* Plot of Year 2016 Day's duration in Las Vegas, NV
+*/
+plot2d([discrete,day_length],[xlabel,"year"],[ylabel,"duration day"],cons(label,label_matrix),[title,example_title],[png_file,"duration_day.png"]);
+
+plot2d([[discrete,day_length],[discrete,dayup],[discrete,daydown]],[xlabel,"days/year"],[ylabel,"hours/local time"],cons(label,label_matrix),[legend,"duration","sunup","sundown"],[title,example_title],[png_file,"day_duration_up_down.png"]);
+/* Sun altitude azimuth example for Las Vegas, Nevada */
+/*for mo:1 thru 12 do (*/
+
+plot2d([[discrete,map(lambda([x],[x[2],x[3]]),sun_jan[1])],
+       [discrete,map(lambda([x],[x[2],x[3]]),sun_jun[1])],
+       [discrete,map(lambda([x],[x[2],x[3]]),sun_sep[1])]],
+       [legend,"jan","jun","sep"],
+    [ylabel,"Altitude (deg)"],[xlabel,"Azimuth (deg) degrees clockwise from north."],
+    cons(label,append(sun_jan[2],append(sun_jun[2],sun_sep[2]))),
+    [title,example_title], [png_file,"sun_position_day.png"]);
+
