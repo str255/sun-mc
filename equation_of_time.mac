@@ -198,3 +198,24 @@ sun_alt_az(jd,tz,ds,lat, lon, h):=block([T,LT,UT, UTZ:0, i:0, E, lambda, dec, GH
                    if (alt_new >= 0) then 
                    altaz:cons(cons(LT/60, observe),altaz)),
                  [altaz,sun_labels])$
+
+/* inputs 
+   inputs: jd is julian day
+   ut=universal time hours
+   lat is observer latitude (degrees +north)
+   lon is observer longitude (degrees -west)
+   h is observer height (meters)
+   output: list of observations (altaz) and labels for plot2
+   az is azimuth degrees clockwise from north (pilot's coords)
+   alt is altitude degrees
+ */
+sun_alt_az_onepoint(jd,ut,lat, lon, h):=block([T,eot, dec, E, lambda, GHA],
+		   numer:true,
+		   keepfloat:true,
+                   T:centuries_j2000(jd),
+		   eot:equation_of_time_full(T, ut),
+		   dec:eot[1],
+		   E:eot[2],
+	           lambda:eot[3],
+		   GHA:greenwich_hour_angle(ut, E),
+                   observe:observer_coord_gha(GHA, dec, lat, lon))$
