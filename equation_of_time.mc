@@ -1,0 +1,323 @@
+/* equation_of_time.mc Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+   Low precision ephemeris for the Sun.
+   Source: Explanatory Supplement to the Astronomical Almanac
+   P. Kenneth Seidelmann, United States Naval Observatory.
+   Nautical Almanac Office, Great Britain. Nautical Almanac Office
+*/
+
+load("julian.mc");
+
+/* T is julian day in unit of centuries
+   UT is universal time
+   output
+   dec is declination degrees
+   E is equation of time minutes
+   lambda is ecliptic longitude (position of earth along orbit) degrees
+ */
+equation_of_time_full(T, UT):= block([lambda, dec, L, G, epsilon, E],
+	numer:true,
+	keepfloat:true,
+        T:T + UT/(24*36525),               
+        L:280.460 + 36000.770 * T,
+	G:357.528 + 35999.050 * T,
+        lambda:L + 1.915 * sind(G) + 0.020 * sind(2*G),
+	lambda:mod(lambda,360),
+        epsilon:23.4393 - 0.01300*T,
+        E:-1.915*sind(G) - 0.020*sind(2*G) + 2.466*sind(2*lambda) - 0.053*sind(4*lambda),
+        E:60.0/15.0*E,
+	dec:180.0/%pi*asin(sind(epsilon)*sind(lambda)),
+	[dec,E,lambda]);
+
+/* T is julian day in unit of centuries
+   UT is universal time
+   output
+   declination degrees
+   E equation of time minutes
+*/
+equation_of_time(T, UT):=block([eot:equation_of_time_full(T, UT)], [eot[1],eot[2]])$
+
+/* equation of time
+   tzi is time zone
+   ds is daylight savings
+   */
+analemma(day,month,year,tzi,ds):=equation_of_time(centuries_j2000(julian(day,month,year)), 12-tzi-ds);
+/* for day:1 thru 30 do print(day,julian(day,10,1582),calendar(julian(day, 10, 1582)));*/
+/* for jd:0 thru 5 do print(jd,calendar(jd),calendar8601(jd));*/
+
+
+/* New York, NY example 
+*/
+example_title:"New York, NY"; 
+example_day:6;
+example_month:8;
+example_year:2016;
+example_julian_date:julian(6,8,2016); 
+example_timezone:5;
+example_daylight_savings:1;
+example_observer_latitude: 40.708;
+example_observer_longitude: -74.;
+example_observer_altitude:3;
+
+/* Las Vegas NV example 
+*/
+example_title:"Las Vegas NV"; 
+example_day:30;
+example_month:7;
+example_year:2016;
+example_julian_date:julian(30,7,2016); 
+example_timezone:8;
+example_daylight_savings:1; 
+example_observer_latitude: 36.048152;
+example_observer_longitude: -114.951; 
+example_observer_altitude:1000;
+
+analemma_start:julian(1,1,example_year);
+timezone:example_timezone;
+daylightsavings:0;
+analemma_matrix:[];
+label_matrix:[];
+for day:1 thru 365 do analemma_matrix:cons(equation_of_time(centuries_j2000(analemma_start+day), 12-timezone-daylightsavings),analemma_matrix);
+for month:1 thru 12 do label_matrix:cons(append([month_string_array[month]],analemma(1,month,example_year,timezone,daylightsavings)),label_matrix);
+plot2d([discrete,analemma_matrix],[ylabel,"equation of time"],[xlabel,"declination"],cons(label,label_matrix),[title,"Analemma"],[png_file,"analemma.png"]);
+
+/* value is in degrees
+ E is equation of time (see equation_of_time(double T)
+ UT is universal time
+ */
+greenwich_hour_angle(UT, E):=15*UT - 180 + 15*E/60.$
+
+/* H is observer elevation AGL meters
+ phi is observer latitude degrees north positive (also gp, lat)
+ dec is sun's declination degrees
+ t is sun hour angle
+*/
+sun_hour_angle(phi, h, dec):=block([cost],
+  numer:true,
+  keepfloat:true,
+  h:-50./60. - 0.0353*sqrt(h),  
+  cost:( sind(h) - sind(phi)*sind(dec) )/( cosd(phi)*cosd(dec) ),
+  if (cost > 1) then 0 else (
+   if (cost < -1) then 180.
+   else 180./%pi*acos(cost)))$
+
+/* T is time centuries (see j2000)
+ lat is observer latitude degrees (+N)
+ lon is observer longitude degress (+E)
+ sgn is sign rise +1, sign set -1
+ H is observer altitude meters
+(gdb) p GHA = -1.6324222262473047
+(gdb) p SHA = 105.64753057341048
+(gdb) p E = -6.5296889049892188
+(gdb) p dec = 19.005791043318244
+(gdb) p lambda = 125.0371808285275
+*/
+calculate_rise_time(T, lat, lon, sgn, h):=block([UT:12+8, UTZ:0, i:0, E, lambda, dec, GHA, SHA],
+		   numer:true,
+		   keepfloat:true,
+		   while (abs(UT - UTZ) > 0.008 and i < 5) do (
+		   i:i+1,
+/*		   print(i, UT, UTZ),*/
+		   eot:equation_of_time_full(T, UT),
+		   dec:eot[1],
+		   E:eot[2],
+	           lambda:eot[3],
+		   GHA:greenwich_hour_angle(UT, E),
+		   SHA:sun_hour_angle(lat, h, dec),
+		   UTZ:UT,
+		   UT:UT - (GHA + lon + sgn*SHA)/15,
+		   if (UT<0) then UT:UT + 24 else (if (UT > 24) then UT:UT - 24)),
+		   UT)$
+
+
+/* dow is day of week
+   returns julian day of nth dow.
+   For example 1st Sunday in November julian_dow(1,1,11,2016)
+   2nd Sunday of March julian_dow(1,2,3,2016) */
+julian_dow(dow,week,month,year):=block([jd,cal,dowz,beginning],
+  numer:true,
+  keepfloat:true,
+  jd:julian(1,month,year),
+  cal:calendar(jd),
+  dowz:cal[2],
+/*  beginning:(week-1)*7+dow-dowz,  
+  if (beginning < 0) then 7+beginning+1 else beginning+1,
+  7+beginning+1,*/
+  julian(week*7+dow-dowz+1, month, year)
+  );
+
+day_of_year(day,month,year):=julian(day,month,year)-julian(1,1,year)+1$
+
+/* DST begins on the second Sunday of March and ends on the first Sunday of November. */
+DST(jd,ds):=block([dst_beg:julian_dow(1,2,3,example_year),dst_end:julian_dow(1,1,11,example_year)],
+  if (dst_beg<jd and jd<dst_end) then ds else 0);
+UT_to_local_time(UT,jd,tz,ds):=block([],ds:DST(jd,ds),mod(UT-tz+ds,24))$
+local_to_UT_time(LT,jd,tz,ds):=block([],ds:DST(jd,ds),mod(LT+tz-ds,24))$
+
+
+T:centuries_j2000(example_julian_date);
+rise:calculate_rise_time(T, example_observer_latitude,example_observer_longitude, 1, example_observer_altitude);
+rise_local:UT_to_local_time(rise,example_julian_date,example_timezone, example_daylight_savings);
+set:calculate_rise_time(T, example_observer_latitude, example_observer_longitude, -1, example_observer_altitude);
+set_local:UT_to_local_time(set,example_julian_date,example_timezone, example_daylight_savings);
+day_duration(T, jd, lat, lon, h):=block([delta,rise,set],
+rise:UT_to_local_time(calculate_rise_time(T, lat, lon, 1, h),jd,example_timezone, example_daylight_savings),
+set:UT_to_local_time(calculate_rise_time(T, lat, lon, -1, h),jd,example_timezone, example_daylight_savings),
+[rise,set])$
+/* one years duration list 2016 Las Vegas, NV */
+day_length:[]$
+for i:0 thru 365 do block([aday:day_duration(centuries_j2000(analemma_start+i), analemma_start+i, example_observer_latitude, example_observer_longitude, 0)], day_length:cons(aday[2]-aday[1],day_length));
+/* 12 months duration list */
+
+month_rise:[];
+month_set:[];
+label_matrix:[];
+block([jd, T, lon:example_observer_longitude, lat:example_observer_latitude,
+       h:example_observer_altitude, tz:example_timezone, ds:example_daylight_savings],
+            for month:1 thru 12 do (
+              jd:julian(1,month,example_year),
+              T:centuries_j2000(jd),
+              month_rise:cons(UT_to_local_time(calculate_rise_time(T, lat, lon, 1, h), jd, tz, ds), month_rise),
+              month_set:cons(UT_to_local_time(calculate_rise_time(T, lat, lon, -1, h), jd, tz, ds), month_set)),
+            for month:1 thru 12 do label_matrix:cons([month_string_array[month], julian(1,month,example_year)-julian(1,1,example_year),
+              month_set[month]-month_rise[month]],
+              label_matrix));
+
+/* Plot of Year 2016 Day's duration in Las Vegas, NV
+*/
+plot2d([discrete,day_length],[xlabel,"year"],[ylabel,"duration day"],cons(label,label_matrix),[title,example_title],[png_file,"duration_day.png"]);
+
+/* 12 months dayup list */
+dayup:[]$
+for i:0 thru 365 do block([aday:day_duration(centuries_j2000(analemma_start+i), analemma_start+i, example_observer_latitude, example_observer_longitude, 0)], dayup:cons(aday[1],dayup));
+/* 12 months daydown list */
+daydown:[]$
+for i:0 thru 365 do block([aday:day_duration(centuries_j2000(analemma_start+i), analemma_start+i, example_observer_latitude, example_observer_longitude, 0)], daydown:cons(aday[2],daydown));
+month_rise:reverse(month_rise);
+day_length:reverse(day_length);
+dayup:reverse(dayup);
+daydown:reverse(daydown);
+plot2d([[discrete,day_length],[discrete,dayup],[discrete,daydown]],[xlabel,"days/year"],[ylabel,"hours/local time"],cons(label,label_matrix),[legend,"duration","sunup","sundown"],[title,example_title],[png_file,"day_duration_up_down.png"]);
+
+/* convert observation local hour angle and declination
+   to azimuth and altitude.
+   hour_angle is hour angle (gha) in degrees
+   dec is declination in degrees
+   lat is observer latitude in degrees
+   output 
+   az is azimuth degrees clockwise from north (pilot's coords)
+   alt is altitude degrees
+ */
+observer_coord(hour_angle, dec, lat):=block([sh : sind(hour_angle),ch : cosd(hour_angle),
+                                             sd : sind(dec),cd : cosd(dec),sl : sind(lat),cl : cosd(lat),x,y,z,r,az,alt],
+                                             numer:true,
+                                             keepfloat:true,
+                                             x : - ch * cd * sl + sd * cl,
+                                             y : - sh * cd,
+                                             z : ch * cd * cl + sd * sl,
+                                             r : sqrt(x^2 + y^2),
+                                             /* now get Alt, Az */
+                                             az :180/%pi * atan2(y,x),
+                                             alt :180/%pi* atan2(z,r),
+                                             /* correct for negative AZ */
+                                             if (az < 0) then az : az + 360,
+                                             [az,alt])$
+
+/* convert observation greenwich hour angle and declination
+   to azimuth and altitude.
+   gha is greenwich hour angle (gha) in degrees
+   dec is declination in degrees
+   lat is observer latitude in degrees
+   lon is observer lonitude in degrees (-West)
+   note: formula lha=gha-lon is corrected for west positive convention yielding lha=gha+lon
+ */
+observer_coord_gha(gha, dec, lat, lon):=block([lha:gha+lon],observer_coord(lha, dec, lat))$
+
+/* plot alt, az during the day for the sun
+   inputs: jd is julian day
+   tz is time zone (+west)
+   ds is day light savings (applied automatically be procedure).
+   lat is observer latitude (degrees +north)
+   lon is observer longitude (degrees -west)
+   h is observer height (meters)
+   output: list of observations (altaz) and labels for plot2
+   az is azimuth degrees clockwise from north (pilot's coords)
+   alt is altitude degrees
+*/
+sun_alt_az(jd,tz,ds,lat, lon, h):=block([T,LT,UT, UTZ:0, i:0, E, lambda, dec, GHA, SHA,altaz:[],sun_labels:[],observe,alt_old,alt_new],
+		   numer:true,
+		   keepfloat:true,
+                   T:centuries_j2000(jd),
+                   for LT:0 thru 24*60 do (
+                   UT:local_to_UT_time(LT/60,jd,tz,ds),
+		   eot:equation_of_time_full(T, UT),
+		   dec:eot[1],
+		   E:eot[2],
+	           lambda:eot[3],
+		   GHA:greenwich_hour_angle(UT, E),
+                   observe:observer_coord_gha(GHA, dec, lat, lon),
+                   alt_old:alt_new,
+                   alt_new:observe[2],
+                   if (alt_old<0 and alt_new>0) then sun_labels:cons(cons(string(truncate(LT/60*100)/100),observe),sun_labels),
+                   if (alt_old>0 and alt_new<0) then sun_labels:cons(cons(string(truncate(LT/60*100)/100),observe),sun_labels),                   
+                   if (mod(LT,60)=0 and alt_new>0) then  sun_labels:cons(cons(string(LT/60),observe),sun_labels),                   
+                   if (alt_new >= 0) then 
+                   altaz:cons(cons(LT/60, observe),altaz)),
+                 [altaz,sun_labels])$
+
+sun_alt_az_onepoint(jd,ut,lat, lon, h):=block([T,eot, dec, E, lambda, GHA],
+		   numer:true,
+		   keepfloat:true,
+                   T:centuries_j2000(jd),
+		   eot:equation_of_time_full(T, ut),
+		   dec:eot[1],
+		   E:eot[2],
+	           lambda:eot[3],
+		   GHA:greenwich_hour_angle(ut, E),
+                   observe:observer_coord_gha(GHA, dec, lat, lon))$
+
+sun_jan:sun_alt_az(
+    julian(1,1,example_year), 
+    example_timezone,
+    example_daylight_savings,
+    example_observer_latitude,
+    example_observer_longitude,
+    example_observer_altitude);
+sun_jun:sun_alt_az(
+    julian(1,6,example_year), 
+    example_timezone,
+    example_daylight_savings,
+    example_observer_latitude,
+    example_observer_longitude,
+    example_observer_altitude);
+sun_sep:sun_alt_az(
+    julian(1,9,example_year), 
+    example_timezone,
+    example_daylight_savings,
+    example_observer_latitude,
+    example_observer_longitude,
+    example_observer_altitude);
+
+/* Sun altitude azimuth example for Las Vegas, Nevada */
+/*for mo:1 thru 12 do (*/
+
+plot2d([[discrete,map(lambda([x],[x[2],x[3]]),sun_jan[1])],
+       [discrete,map(lambda([x],[x[2],x[3]]),sun_jun[1])],
+       [discrete,map(lambda([x],[x[2],x[3]]),sun_sep[1])]],
+       [legend,"jan","jun","sep"],
+    [ylabel,"Altitude (deg)"],[xlabel,"Azimuth (deg) degrees clockwise from north."],
+    cons(label,append(sun_jan[2],append(sun_jun[2],sun_sep[2]))),
+    [title,example_title], [png_file,"sun_position_day.png"]);
