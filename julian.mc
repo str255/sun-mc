@@ -1,3 +1,4 @@
+
 /* julian.mc Copyright 2016 Nicholas C. Strauss (strauss@positive-internet.com)
 
    This program is free software: you can redistribute it and/or modify
@@ -132,6 +133,8 @@ calendar8601(julianDay):=
 	[dayOfWeek_array[dayOfWeek], fd*24, day, month_array[month], year])$	
 
 emacs_absolute_day(day, month, year):=iso8601(day, month, year) - iso8601(31,12,0)$
+
+how_many_days(day1, month1, year1, day2, month2, year2):=julian(day2, month2, year2)-julian(day1, month1, year1)$
 
 centuries_j2000(jd) := (jd - 2451545.0)/ 36525.0$ 
 sind(x):=sin(%pi/180*x)$
