@@ -137,3 +137,4 @@ centuries_j2000(jd) := (jd - 2451545.0)/ 36525.0$
 sind(x):=sin(%pi/180*x)$
 cosd(x):=cos(%pi/180*x)$
 
+how_many_days(day1, month1, year1, day2, month2, year2):=julian(day2, month2, year2)-julian(day1, month1, year1)$
